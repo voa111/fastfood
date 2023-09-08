@@ -10,20 +10,17 @@ routes_bp = Blueprint(
 )
 
 
-@routes_bp.route('/api/fooditems')
-def get_fooditems():
-    df = pd.read_csv('fastfood', usecols=["restaurant", "item", "calories"])
-    json_data = df.values.tolist()
-    print(jsonify(json_data))
-    return jsonify(json_data)
-
-
 @routes_bp.route('/')
 def home():
     return render_template('table.html')
 
 
-@routes_bp.route('/import', methods=['POST', 'GET'])
+@routes_bp.route('/api/fooditems')
+def get_fooditems():
+    return {'data': [fooditem.to_dict() for fooditem in Fooditems.query]}
+
+
+@routes_bp.route('/import')
 def import_csv():
     title = 'Import Datasets'
     return render_template('import.html', title=title)

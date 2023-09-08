@@ -1,47 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
-<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
-</head>
-<body>
-
-<script>
-    $(document).ready( function () {
-      $('#myTable').DataTable({
-        ajax: '/api/fooditems',
-        pageLength: 25,
-        columns: [
-            {data: 'restaurant'},
-            {data: 'item'},
-            {data: 'calories'}
-        ],
-      });
-    } );
-</script>
-
-<table id = 'data' class="table table-dark table-hover">
-    <thead>
-      <tr>
-        <th scope='col'>restaurant</th>
-        <th scope='col'>item</th>
-        <th scope='col'>calories</th>
-      </tr>
-    </thead>
-</table>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+{% extends "base.html" %}
+{% block content %}
 
 
+    <script>
+        $(document).ready( function () {
+            $('#foodTable').DataTable({
+                "ajax": '/api/fooditems',
+                pageLength: 25,
+                columns: [
+                    {data: 'restaurant'},
+                    {data: 'item'},
+                    {data: 'calories'}
+                ]
+            });
+        } );
+    </script>
 
-</body>
-</html>
+    <table id = 'foodTable' class="display">
+        <thead>
+            <tr>
+                <th scope='col'>restaurant</th>
+                <th scope='col'>item</th>
+                <th scope='col'>calories</th>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}
